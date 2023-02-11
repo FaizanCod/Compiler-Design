@@ -34,12 +34,12 @@ string check(string input) {
  
 int main() {
     ifstream fin;
-    fin.open("mealy.txt");
+    fin.open("moore.txt");
 	int curr_line = 0;
     string line;
 
     cout<<"\n20BCS021\nFAIZAN CHOUDHARY\n\n";
-    cout<<"Given Mealy: "<<endl;
+    cout<<"Given Moore: "<<endl;
     // read until EOF
  
     while (getline(fin, line)) {
@@ -55,7 +55,7 @@ int main() {
         getline(fin, line);
         if (curr_line == 0)
            initial_state = line[0] - '0';
-		// no final states in mealy
+		// no final states in moore
         else {
         	for (int i=0; i<line.size(); ) {
    	 	    	if (line[i] != ' ') {
@@ -76,7 +76,7 @@ int main() {
 					}
 				}
 	        }
-			mealy.push_back(temp);
+			moore.push_back(temp);
 			// cout<<"Hello: "<<mealy.back()[0].first<<" "<<mealy.back()[0].second<<" "<<mealy.back()[1].first<<" "<<mealy.back()[1].second<<endl;
 		}
         curr_line++;
@@ -87,7 +87,7 @@ int main() {
     getline(cin, input);
  
     string ans = check(input);
-	cout<<"Output of Mealy machine: "<<ans<<endl; 		
+	cout<<"Output of Moore machine: "<<ans<<endl; 		
 
     // for (int i=0; i<mealy.size(); i++) {
 	// 	for (int j=0; j<mealy[0].size(); j++)
