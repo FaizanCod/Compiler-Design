@@ -21,6 +21,14 @@ vector<int> final_states;
 //	}
 //	return ans;
 //}
+
+int convertToInt(string s) {
+	int num = 0;
+	for (int i=0; i<s.size(); i++) {
+		num = num*10 + (s[i]-'0');
+	}
+	return num;
+}
  
 int find (vector<int> &arr, int key) {
 	for (int i=0; i<arr.size(); i++)
@@ -32,6 +40,10 @@ int find (vector<int> &arr, int key) {
 string check(vector< vector<int> > &dfa, string input) {
 	int curr_state = initial_state;
 	int i=0;
+	for (int i=0; i<input.size(); i++) {
+		if (input[i]-'0' >= dfa[0].size())
+			return "INVALID INPUT";
+	}
 	cout<<"\nTransitions: ";
 	while (i < input.size() && curr_state != -1) {
 		curr_state = dfa[curr_state][input[i]-'0'];
@@ -52,7 +64,7 @@ string check(vector< vector<int> > &dfa, string input) {
 int main() {
     ifstream fin;
     fin.open("dfa.txt");
-	int curr_line = 0;
+	int curr_line = 0, mx = 0;
     string line;
     cout<<"\n20BCS021\nFAIZAN CHOUDHARY\n\n";
     cout<<"Given DFA: "<<endl;
@@ -68,11 +80,11 @@ int main() {
         getline(fin, line);
         vector<int> temp;
         if (curr_line == 0)
-           initial_state = line[0] - '0';
+           initial_state = convertToInt(line);
         else if (curr_line == 1) {
    	 	    for (int i=0; i<line.size(); i++) {
    	 	    	if (line[i] != ',') {
-   	 	    		final_states.push_back(line[i] - '0');
+   	 	    		final_states.push_back(convertToInt(line.substr(i, 1)));
 				}
 	        }	
 		}
@@ -81,10 +93,10 @@ int main() {
    	 	    	if (line[i] != ' ') {
    	 	    		if (line[i] == '-') {
    	 	    		   	i++;
-   	 	    		   	temp.push_back(-(line[i] - '0'));
+   	 	    		   	temp.push_back(-(convertToInt(line.substr(i, 1))));
 	                }
 	                else
-   	 	    			temp.push_back(line[i]-'0');
+   	 	    			temp.push_back(convertToInt(line.substr(i, 1)));
 				}
 	        }
 	        dfa.push_back(temp);
@@ -107,7 +119,6 @@ int main() {
 //    		cout<<dfa[i][j]<<" ";
 //    	cout<<endl;
 //	}
- 
  
     fin.close();
     return 0;
