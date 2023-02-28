@@ -25,14 +25,14 @@ string check(string input) {
 	int t = initial_state;
 	int i=0;
 	cout<<"\nTransitions: ";
-	while (i < input.size() && t != -1) {
-		t = moore[t][input[i]-'0'];
+	while (i <= input.size() && t != -1) {
 		if (t != -1)
 			cout<<"q"<<t<<" -> ";
 		if (t == -1)
 			break;
-		else
+		// else
 			out += stateOutputs[t];
+		t = moore[t][input[i]-'0'];
 		i++;
 	}
 	cout<<endl;

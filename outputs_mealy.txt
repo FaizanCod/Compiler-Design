@@ -1,0 +1,22 @@
+20BCS021
+FAIZAN CHOUDHARY
+
+Given Mealy:
+0
+1 A -1 -1
+-1 -1 2 AB
+3 B 11 B
+-1 -1 4 AB
+5 A -1 -1
+-1 -1 6 B
+4 A 7 BA
+8 A -1 -1
+-1 -1 9 B
+10 A -1 -1
+-1 -1 11 B
+0 A -1 -1
+
+Enter input consisting of 0's and 1's: 010101001101010
+
+Transitions: q0 -> q1 -> q2 -> q3 -> q4 -> q5 -> q6 -> q4 -> q5 -> q6 -> q7 -> q8 -> q9 -> q10 -> q11 -> q0 ->
+Output of Mealy machine:  AABBABABAABAABABA

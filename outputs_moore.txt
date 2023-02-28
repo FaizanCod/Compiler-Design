@@ -1,0 +1,13 @@
+20BCS021
+FAIZAN CHOUDHARY
+
+Given Moore:
+0
+0 1 A
+-1 2 B
+-1 0 A
+
+Enter input consisting of 0's and 1's: 00100
+
+Transitions: q0 -> q0 -> q1 ->
+Output of Moore machine: AAB
