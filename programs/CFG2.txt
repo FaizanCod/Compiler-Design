@@ -1,0 +1,8 @@
+E T G
+G + T G
+G #
+T F U
+U * F U
+U #
+F ( E )
+F i
