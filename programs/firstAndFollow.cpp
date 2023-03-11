@@ -13,13 +13,34 @@ using namespace std;
 
 vector< vector<char> > CFG;
 int noOfNTs = 0;
-int maxCols = 0, maxRows = 0;
 map <string, bool> isVisited;
 set <char> NonTerminals;
 set <char> Terminals;
 map <char, set<char>> first;
 map <char, set<char>> follow;
 map <char, vector<string>> productions;
+
+bool isUpper(string s) {
+    for (int i=0; i<s.size(); i++)
+        if (islower(s[i]))
+            return false;
+    return true;
+}
+
+bool checkEpsilon(string p, char n) {
+    bool allEpsilon = true;
+    if (isUpper(p)) {
+        for (string x: productions[p[0]]) {
+            if (x != "#") {
+                allEpsilon = false;
+                break;
+            }
+        }
+        if (allEpsilon)
+            first[n].insert('#');
+    }
+    return allEpsilon;
+}
 
 // to find first of a non-terminal recursively
 void findFirst(string p, char n) {
@@ -42,7 +63,9 @@ void findFirst(string p, char n) {
                 if (find(productions[p[i]].begin(), productions[p[i]].end(), "#") == productions[p[i]].end())
                     break;
                 else {
-                    if (i != p.size()-1)
+                    // if all productions of n are epsilon, then add epsilon to first of n
+
+                    if (i != p.size()-1 && !checkEpsilon(p, n))
                         first[n].erase('#');
                     // continue;
                 }
@@ -86,8 +109,12 @@ void findFollow(char c) {
                                     follow[c].erase('#');
                                     if (j == p.size()-1)
                                         follow[c].insert(follow[x.first].begin(), follow[x.first].end());
-                                    break;
+                                    // else
+                                    //     continue;
+                                    // break;
                                 }
+                                else
+                                    break;
                             }
                             else {
                                 follow[c].insert(p[j]);
@@ -100,18 +127,10 @@ void findFollow(char c) {
         }
     }
 }
-
-// bool isUpper (string s) {
-//     for (auto &c: s) {
-//         if (islower(c))
-//             return false;
-//     }
-//     return true;
-// }
  
 int main() {
     ifstream fin;
-    fin.open("CFG2.txt");
+    fin.open("CFG4.txt");
 	int curr_line = 0;
     string line;
 
@@ -148,7 +167,6 @@ int main() {
                 first[s].insert(s);
             }
             col++;
-            maxCols = max(maxCols, col);
             temp.push_back(s);
         }
         // adding production to map
@@ -160,7 +178,6 @@ int main() {
         CFG.push_back(temp);
         curr_line++;
     }
-    maxRows = max(maxRows, curr_line);
 
     for (auto x: NonTerminals)
         isVisited[to_string(x)] = false;
