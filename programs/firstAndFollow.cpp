@@ -130,7 +130,7 @@ void findFollow(char c) {
  
 int main() {
     ifstream fin;
-    fin.open("CFG4.txt");
+    fin.open("CFG5.txt");
 	int curr_line = 0;
     string line;
 
