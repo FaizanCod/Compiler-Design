@@ -2,5 +2,6 @@ S A b B
 S c S
 A B A
 A a
+A #
 B b B
 B #

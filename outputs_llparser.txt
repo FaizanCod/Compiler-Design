@@ -1,0 +1,179 @@
+// CFG.txt // 
+
+20BCS021
+FAIZAN CHOUDHARY
+
+Given CFG:
+0 S A b B
+1 S c S
+2 A B A
+3 A a
+4 A #
+5 B b B
+6 B #
+
+Firsts:
+First(A) : # a b
+First(B) : # b
+First(S) : a b c
+First(a) : a
+First(b) : b
+First(c) : c
+
+Follows:
+Follow(B) : $ a b
+Follow(S) : $
+
+LL Table:
+
+        a       b       c       $
+A       2,3     4,2,3
+
+B       6,5     6,5             6,5
+
+S       0       0       1       0,1
+
+
+// CFG2.txt // 
+
+20BCS021
+FAIZAN CHOUDHARY
+
+Given CFG:
+0 E T G
+1 G + T G
+2 G #
+3 T F U
+4 U * F U
+5 U #
+6 F ( E )
+7 F i
+
+Firsts:
+First(() : (
+First()) : )
+First(*) : *
+First(+) : +
+First(E) : ( i
+First(F) : ( i
+First(G) : # +
+First(T) : ( i
+First(U) : # *
+First(i) : i
+
+Follows:
+Follow(E) : $ )
+Follow(F) : $ ) * +
+Follow(G) : $ )
+Follow(T) : $ ) +
+Follow(U) : $ ) +
+
+
+        (       )       *       +       i       $
+E       0                               0
+
+F       6                               7
+
+G               2               1               2
+
+T       3                               3
+
+U               5       4       5               5
+
+
+// CFG3.txt // 
+
+20BCS021
+FAIZAN CHOUDHARY
+
+Given CFG:
+0 S A B C D E
+1 A a
+2 A #
+3 B b
+4 B #
+5 C c
+6 D d
+7 D #
+8 E e
+9 E #
+
+Firsts:
+First(A) : # a 
+First(B) : # b
+First(C) : c
+First(D) : # d
+First(E) : # e
+First(S) : a b c
+First(a) : a 
+First(b) : b
+First(c) : c
+First(d) : d
+First(e) : e
+
+Follows:
+Follow(A) : b c
+Follow(B) : c
+Follow(C) : $ d e 
+Follow(D) : $ e
+Follow(E) : $
+Follow(S) : $
+
+LL Table:
+
+        a       b       c       d       e       $
+A       1       2       2
+
+B               3       4
+
+C                       5
+
+D                               6       7       7
+
+E                                       8       9
+
+S       0       0       0
+
+
+// CFG4.txt // 
+
+20BCS021
+FAIZAN CHOUDHARY
+
+Given CFG:
+0 S A C B
+1 S C b B
+2 S B a
+4 A B C
+5 B g
+6 B #
+7 C h
+8 C #
+
+Firsts:
+First(A) : # d g h
+First(B) : # g
+First(C) : # h
+First(S) : a b d g h
+First(a) : a
+First(b) : b
+First(d) : d
+First(g) : g
+First(h) : h
+
+Follows:
+Follow(A) : $ g h
+Follow(B) : $ a g h
+Follow(C) : $ b g h
+Follow(S) : $
+
+LL Table:
+
+        a       b       d       g       h       $
+A                       3       4       4       4
+
+B       6                       6,5     6       6
+
+C               8               8       8,7     8
+
+S       2       1       0       0,2     0,1

@@ -1,0 +1,113 @@
+CFG.txt
+
+Given CFG:
+S A b B
+S c S
+A B A
+A a
+B b B
+B #
+
+First(A) : a b
+First(B) : # b
+First(S) : a b c
+First(a) : a
+First(b) : b
+First(c) : c
+
+Follows:
+Follow(A) : b
+Follow(B) : $ a b
+Follow(S) : $
+
+CFG2.txt
+
+Given CFG:
+E T G
+G + T G
+G #
+T F U
+U * F U
+U #
+F ( E )
+F i
+
+Firsts:
+First(() : (
+First()) : )
+First(*) : *
+First(+) : +
+First(E) : ( i
+First(G) : # +
+First(T) : ( i
+First(U) : # *
+First(i) : i
+
+Follows:
+Follow(E) : $ )
+Follow(F) : $ ) * +
+Follow(G) : $ )
+Follow(T) : $ ) +
+Follow(U) : $ ) +
+
+CFG3.txt
+
+Given CFG:
+S A B C D E
+A a
+A #
+B b
+B #
+C c
+D d
+D #
+E e
+E #
+
+Firsts:
+First(A) : # a
+First(B) : # b
+First(C) : c
+First(D) : # d
+First(E) : # e
+First(S) : a b c 
+First(c) : c
+First(d) : d
+First(e) : e
+
+Follows:
+Follow(A) : b c
+Follow(B) : c
+Follow(C) : $ d e
+Follow(D) : $ e
+Follow(E) : $
+Follow(S) : $
+
+CFG4.txt
+
+Given CFG:
+S A C B
+S C b B
+S B a
+A d a
+A B C
+B g
+B #
+C h
+C #
+
+Firsts:
+First(A) : # d g h
+First(B) : # g
+First(S) : # a b d g h
+First(a) : a
+First(b) : b
+First(d) : d
+First(g) : g
+First(h) : h
+
+Follows:
+Follow(A) : $ g h
+Follow(B) : $ a g h
+Follow(C) : $ b g h
+Follow(S) : $
