@@ -1,0 +1,80 @@
+20BCS021
+FAIZAN CHOUDHARY
+
+Given CFG:
+0 S a A C
+1 S B b
+2 A e D
+3 B f
+4 B g
+5 C h
+6 C i
+7 D b E
+8 D #
+9 E e D
+10 E d D
+
+
+Given LL(1) parsing table:
+
+                a               b               d               e               f               g               h               i               $
+A                                                               2
+B                                                                               3               4
+C                                                                                                               5               6
+D                               7                                                                               8               8
+E                                               10              9
+S               0                                                               1               1
+
+Enter string to check: aebde
+
+Top of Stack    Input String    Production applied
+S               aebde$          S->aAC
+A               ebde$           A->eD
+D               bde$            D->bE
+E               de$             E->dD
+D               e$
+
+String is not accepted!
+
+
+
+20BCS021
+FAIZAN CHOUDHARY
+
+Given CFG:
+0 S a A C
+1 S B b
+2 A e D
+3 B f
+4 B g
+5 C h
+6 C i
+7 D b E
+8 D #
+9 E e D
+10 E d D
+
+
+Given LL(1) parsing table:
+
+                a               b               d               e               f               g               h               i               $
+A                                                               2
+B                                                                               3               4
+C                                                                                                               5               6
+D                               7                                                                               8               8
+E                                               10              9
+S               0                                                               1               1
+
+Enter string to check: aebdh
+
+Top of Stack    Input String    Production applied
+S               aebdh$          S->aAC
+A               ebdh$           A->eD
+D               bdh$            D->bE
+E               dh$             E->dD
+D               h$              D->#
+C               h$              C->h
+$               $
+
+String is accepted
+

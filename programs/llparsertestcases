@@ -1,0 +1,10 @@
+CFG2
+(i+i)*i*i+()
+(i+i)*i*i+(
+(i+i)*i*i
+i+i*i
+
+CFG1
+aebebef
+aebdh
+aebdhe

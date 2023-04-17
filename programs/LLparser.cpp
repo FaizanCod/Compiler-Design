@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
     ifstream fin;
-    fin.open("CFG4.txt");
+    fin.open("CFG1.txt");
 	int curr_line = 0;
     string line;
 
@@ -133,24 +133,35 @@ int main() {
     }
 
     // LL table
+    ofstream fout;
+    fout.open("LLtable.txt");
     cout<<endl<<"LL Table:\n\n";
-    cout<<"\t";
+    fout<<"\t\t";
+    cout<<"\t\t";
     for (char t: Ts) {
-        cout<<t<<"\t";
+        cout<<t<<"\t\t";
+        fout<<t<<"\t\t";
     }
+    fout<<endl;
     cout<<endl;
     for (int i=0; i<NTs.size(); i++) {
-        cout<<NTs[i]<<"\t";
+        cout<<NTs[i]<<"\t\t";
+        fout<<NTs[i]<<"\t\t";
         for (int j=0; j<Ts.size(); j++) {
             for (int k=0; k<LL[i][j].size(); k++) {
                 cout<<prodNo[NTs[i] + *next(LL[i][j].begin(), k)];
-                if (k != LL[i][j].size()-1)
+                fout<<prodNo[NTs[i] + *next(LL[i][j].begin(), k)];
+                if (k != LL[i][j].size()-1) {
                     cout<<",";
+                    fout<<",";
+                }
             }
-            cout<<"\t";
+            cout<<"\t\t";
+            fout<<"\t\t";
         }
         cout<<endl<<endl;
+        fout<<endl;
     }
-
+    fout.close();
     return 0;
 }
